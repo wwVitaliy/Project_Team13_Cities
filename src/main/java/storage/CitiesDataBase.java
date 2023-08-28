@@ -1,5 +1,7 @@
 package storage;
 
+import GUI.windows.StartWindow;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
@@ -28,6 +30,7 @@ public class CitiesDataBase {
                 .findAny();
 
         answer.ifPresent(cities::remove);
+        cities.remove(toCompare);
 
         return answer.orElse(null);
     }
@@ -42,7 +45,6 @@ public class CitiesDataBase {
     }
 
     public static void main(String[] args) {
-        CitiesDataBase citiesDataBase = new CitiesDataBase();
-        System.out.println(citiesDataBase.nextCity("Druzhkivka"));
+        new StartWindow();
     }
 }
