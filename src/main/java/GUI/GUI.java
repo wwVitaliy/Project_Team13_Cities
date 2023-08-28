@@ -10,4 +10,7 @@ public class GUI {
     public static void gameWindow(){
         new GameWindow();
     }
+    public static void scoreWindow(int score){
+
+    }
 }

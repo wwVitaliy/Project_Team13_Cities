@@ -43,8 +43,4 @@ public class CitiesDataBase {
     public boolean containsCity(String str) {
         return cities.contains(str);
     }
-
-    public static void main(String[] args) {
-        new StartWindow();
-    }
 }
