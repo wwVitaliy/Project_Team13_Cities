@@ -2,8 +2,11 @@ package GUI.windows;
 
 import GUI.GUI;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 //Клас StartWindow є відображенням вітального вікна
 public class StartWindow extends JFrame {
@@ -22,6 +25,15 @@ public class StartWindow extends JFrame {
         setTitle("Welcome");
         setLayout(new FlowLayout());
         setLocationRelativeTo(null);
+
+        //city Icon added to title bar
+        try {
+            File file = new File("./src/main/resources/cityIcon.jpg");
+            Image cityIcon = ImageIO.read(file);
+            setIconImage(cityIcon);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         startButton = new JButton("Start");
         startButton.setSize(30, 30);
