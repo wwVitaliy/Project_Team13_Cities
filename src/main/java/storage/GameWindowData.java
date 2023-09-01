@@ -1,44 +1,61 @@
 package storage;
 
+
+import java.awt.*;
+
 public class GameWindowData {
-    public String inputFieldLabel;
-    public String computerResponse;
-    public int playersScore;
+    //constants
+    public static final Dimension windowDimension = new Dimension(400, 500);
+    public static final Dimension componentsDimension = new Dimension(300, 80);
+    private static final String computerResponseFormat = "      Computer: %s";
 
-    public GameWindowData() {
-        this.inputFieldLabel = "Your turn! Enter city name here.";
-        this.computerResponse = "";
-        this.playersScore = 0;
+    //fields
+
+    private int score;
+    private String userLabel;
+    private String computerLabel;
+    private String gameButton;
+
+    public GameWindowData(){
+        this.gameButton = "    Play    ";
+        this.userLabel = "Please write city name";
+        this.computerLabel = String.format(computerResponseFormat, "waiting");
+        this.score = 0;
     }
 
-    public String getInputFieldText() {
-        return inputFieldLabel;
+    public void setComputerLabelText(String cityName){
+        computerLabel = String.format(computerResponseFormat, cityName);
     }
 
-    public void setInputFieldText(String inputFieldText) {
-        this.inputFieldLabel = inputFieldText;
+    public int getScore() {
+        return score;
     }
 
-    public String getComputerResponse() {
-        return computerResponse;
+    public void incrementScore(){
+        score++;
     }
 
-    public void setComputerResponse(String computerResponse) {
-        this.computerResponse = computerResponse;
+    public String getUserLabel() {
+        return userLabel;
     }
 
-    public int getPlayersScore() {
-        return playersScore;
+    public void setUserLabel(String userLabel) {
+        this.userLabel = userLabel;
     }
 
-//    public void setPlayersScore(int playersScore) {
-//        this.playersScore = playersScore;
-//    }
+    public String getComputerLabel() {
+        return computerLabel;
+    }
 
-    /**
-     * Increments player's score
-     */
-    public void increasePlayersScore() {
-        this.playersScore++;
+    public void setComputerLabel(String computerLabel) {
+        this.computerLabel = computerLabel;
+    }
+
+    public String getGameButton() {
+        return gameButton;
+    }
+
+    public void setGameButton(String gameButton) {
+        this.gameButton = gameButton;
     }
 }
