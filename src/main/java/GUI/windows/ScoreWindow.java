@@ -13,16 +13,23 @@ import java.security.InvalidParameterException;
 public class ScoreWindow extends JDialog {
     private final int score;
     private final Dimension scoreWindowDimension = new Dimension(400,100);
-    private static final String COMPUTER_WIN_FORMAT = "Congratulations computer win with score: %d";
+    private static final String COMPUTER_WIN_FORMAT = "Computer win with score: %d";
     private static final String HUMAN_WIN_FORMAT = "Congratulations you win with score: %d";
     public static final String HUMAN_WIN = "human";
     public static final String COMPUTER_WIN = "computer";
 
     //В конструкторі створюється саме вікно
     // потім валідується і показується людині
-    public ScoreWindow(int score, String whoWin) {
+    public ScoreWindow(int score, String winner) {
         super(null, "Score", ModalityType.DOCUMENT_MODAL);
         this.score = score;
+        config();
+
+        setLayout(new FlowLayout());
+        getContentPane().add(createScoreLabel(winner));
+        setVisible(true);
+    }
+    public void config(){
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
         setBounds(dimension.width / 2 - scoreWindowDimension.width/2,
@@ -38,20 +45,16 @@ public class ScoreWindow extends JDialog {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        setLayout(new FlowLayout());
-        getContentPane().add(createScoreLabel(whoWin));
-        setVisible(true);
     }
 
     //creates label and format text like we need in Dialog
-    private JLabel createScoreLabel(String whoWin) {
-        if (whoWin.equals(HUMAN_WIN)) {
+    private JLabel createScoreLabel(String winner) {
+        if (winner.equals(HUMAN_WIN)) {
             return new JLabel(String.format(HUMAN_WIN_FORMAT, score));
-        } else if (whoWin.equals(COMPUTER_WIN)) {
+        } else if (winner.equals(COMPUTER_WIN)) {
             return new JLabel(String.format(COMPUTER_WIN_FORMAT, score));
         } else {
-            throw new InvalidParameterException("whoWin should be ScoreWindow.HUMAN_WIN or ScoreWindow.COMPUTER_WIN but was " + whoWin);
+            throw new InvalidParameterException("winner should be ScoreWindow.HUMAN_WIN or ScoreWindow.COMPUTER_WIN but was " + winner);
         }
     }
 }
