@@ -28,7 +28,7 @@ public class StartWindow extends JFrame {
 
         //city Icon added to title bar
         try {
-            File file = new File("./src/main/resources/cityIcon.jpg");
+            File file = new File(GUI.CITY_ICON);
             Image cityIcon = ImageIO.read(file);
             setIconImage(cityIcon);
         } catch (IOException e) {
@@ -41,7 +41,7 @@ public class StartWindow extends JFrame {
         // при натисканні вікно зникає і
         // викликається метод  GUI.gameWindow який має створювати ігрове вікно
         startButton.addActionListener(e -> {
-            setVisible(false);
+            dispose();
             GUI.gameWindow();
         });
 
