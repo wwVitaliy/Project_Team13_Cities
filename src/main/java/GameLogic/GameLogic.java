@@ -111,7 +111,6 @@ public class GameLogic {
         } else if (usedCities.isUsed(entry)) {
             gameWindowData.setUserLabel("Was already used. Try one more time");
             return false;
-
         }
 
         gameWindowData.setUserLabel("Please write city name");
