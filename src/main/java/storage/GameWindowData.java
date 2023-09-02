@@ -72,6 +72,19 @@ public class GameWindowData {
 
     public void setComputerResponse(String computerResponse) {
         this.computerResponse = computerResponse;
-        setComputerLabelText(computerResponse);
+        setComputerLabelText(capitalize(computerResponse));
+    }
+
+    /**
+     * Change the first letter of the text to upprecase
+     *
+     * @param text Text to change
+     * @return Text with a capital first letter
+     */
+    private String capitalize(String text) {
+        if (text == null || text.isEmpty()){
+            return text;
+        }
+        return text.substring(0,1).toUpperCase() + text.substring(1);
     }
 }
