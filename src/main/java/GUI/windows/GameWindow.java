@@ -1,7 +1,6 @@
 package GUI.windows;
 
 import GUI.GUI;
-import storage.GameWindowData;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,8 +8,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-import static storage.GameWindowData.componentsDimension;
-import static storage.GameWindowData.windowDimension;
+import static storage.GameWindowData.WINDOW_DIMENSION;
 
 
 //GameWindow це відображення ігрового вікна
@@ -33,20 +31,24 @@ public class GameWindow extends JFrame {
         setVisible(true);
     }
 
-    private void config(){
+    private void config() {
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
-        setBounds(dimension.width / 2 - windowDimension.width / 2,
-                dimension.height / 2 - windowDimension.height / 2,
-                windowDimension.width,
-                windowDimension.height);
+        setBounds(dimension.width / 2 - WINDOW_DIMENSION.width / 2,
+                dimension.height / 2 - WINDOW_DIMENSION.height / 2,
+                WINDOW_DIMENSION.width,
+                WINDOW_DIMENSION.height);
+
         setTitle("Cities");
         setLayout(null);
         setLocationRelativeTo(null);
         setBackground(Color.WHITE);
     }
-    private void addIcon(){
+
+    private void addIcon() {
         try {
             File file = new File(GUI.CITY_ICON);
             Image cityIcon = ImageIO.read(file);

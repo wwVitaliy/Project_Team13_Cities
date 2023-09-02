@@ -5,33 +5,40 @@ import java.awt.*;
 
 public class GameWindowData {
     //constants
-    public static final Dimension windowDimension = new Dimension(400, 500);
-    public static final Dimension componentsDimension = new Dimension(300, 80);
-    private static final String computerResponseFormat = "      Computer: %s";
+    public static final Dimension WINDOW_DIMENSION = new Dimension(400, 500);
+    public static final Dimension COMPONENTS_DIMENSION = new Dimension(300, 80);
+    private static final String COMPUTER_RESPONSE_FORMAT = "Computer: %s";
+    private static final String GAME_BUTTON_TEXT = "Play";
+    private static final String DEFAULT_INPUT_LABEL = "Please write city name";
+    private static final String DEFAULT_COMPUTER_RESPONSE = "waiting...";
+
 
     //fields
 
     private int score;
     private String userLabel;
     private String computerLabel;
-    private String gameButton;
+    private String gameButtonText;
+    private String computerResponse;
 
-    public GameWindowData(){
-        this.gameButton = "    Play    ";
-        this.userLabel = "Please write city name";
-        this.computerLabel = String.format(computerResponseFormat, "waiting");
+
+    public GameWindowData() {
+        this.gameButtonText = GAME_BUTTON_TEXT;
+        this.userLabel = DEFAULT_INPUT_LABEL;
+        this.computerResponse = DEFAULT_COMPUTER_RESPONSE;
+        this.computerLabel = String.format(COMPUTER_RESPONSE_FORMAT, computerResponse);
         this.score = 0;
     }
 
-    public void setComputerLabelText(String cityName){
-        computerLabel = String.format(computerResponseFormat, cityName);
+    public void setComputerLabelText(String cityName) {
+        computerLabel = String.format(COMPUTER_RESPONSE_FORMAT, cityName);
     }
 
     public int getScore() {
         return score;
     }
 
-    public void incrementScore(){
+    public void incrementScore() {
         score++;
     }
 
@@ -51,11 +58,20 @@ public class GameWindowData {
         this.computerLabel = computerLabel;
     }
 
-    public String getGameButton() {
-        return gameButton;
+    public String getGameButtonText() {
+        return GAME_BUTTON_TEXT;
     }
 
-    public void setGameButton(String gameButton) {
-        this.gameButton = gameButton;
+    public void setGameButtonText(String gameButtonText) {
+        this.gameButtonText = gameButtonText;
+    }
+
+    public String getComputerResponse() {
+        return computerResponse;
+    }
+
+    public void setComputerResponse(String computerResponse) {
+        this.computerResponse = computerResponse;
+        setComputerLabelText(computerResponse);
     }
 }
