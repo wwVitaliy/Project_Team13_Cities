@@ -1,11 +1,12 @@
 package GUI.windows;
 
 import storage.GameWindowData;
+import GameLogic.GameLogic;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static storage.GameWindowData.componentsDimension;
+import static storage.GameWindowData.COMPONENTS_DIMENSION;
 
 public class UserPanel extends JPanel {
     private GameWindowData DATA;
@@ -16,15 +17,14 @@ public class UserPanel extends JPanel {
 
     public UserPanel() {
         super(new FlowLayout());
-        DATA = new GameWindowData(); //DATA = GameLogic.getGameWindowData();
+        DATA = GameLogic.getGameWindowData();
         init();
         update();
-        setBounds(0, 0, componentsDimension.width, componentsDimension.height);
+        setBounds(0, 0, COMPONENTS_DIMENSION.width, COMPONENTS_DIMENSION.height);
     }
 
-    public void update(){
+    public void update() {
         userLabel.setText(DATA.getUserLabel());
-        gameButton.setText(DATA.getGameButton());
         computerResponseLabel.setText(DATA.getComputerLabel());
     }
 
@@ -36,15 +36,16 @@ public class UserPanel extends JPanel {
     }
 
     private void initGameButton() {
-        gameButton = new JButton(DATA.getGameButton());
+        gameButton = new JButton(DATA.getGameButtonText());
         //Додається actionListener до кнопки який виконує якусь логіку
         gameButton.addActionListener(e -> {
             gameButton.setEnabled(false);
             userInputField.setEnabled(false);
-            String text = userInputField.getText();
+            String text = userInputField.getText().toLowerCase();
 
-            //GameLogic.checkEntry(text);
-            //GameLogic.playRound(text);
+            if (GameLogic.checkEntry(text)) {
+                GameLogic.playRound(text);
+            }
 
             update();
             gameButton.setEnabled(true);

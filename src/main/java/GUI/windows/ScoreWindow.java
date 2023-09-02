@@ -13,9 +13,9 @@ import java.security.InvalidParameterException;
 public class ScoreWindow extends JDialog {
     private final int score;
     private final Dimension scoreWindowDimension = new Dimension(400,100);
-    private static final String COMPUTER_WIN_FORMAT = "Computer win with score: %d";
+    private static final String COMPUTER_WIN_FORMAT = "Computer win. Your score: %d";
     private static final String HUMAN_WIN_FORMAT = "Congratulations you win with score: %d";
-    public static final String HUMAN_WIN = "human";
+    public static final String PLAYER_WIN = "player";
     public static final String COMPUTER_WIN = "computer";
 
     //В конструкторі створюється саме вікно
@@ -49,7 +49,7 @@ public class ScoreWindow extends JDialog {
 
     //creates label and format text like we need in Dialog
     private JLabel createScoreLabel(String winner) {
-        if (winner.equals(HUMAN_WIN)) {
+        if (winner.equals(PLAYER_WIN)) {
             return new JLabel(String.format(HUMAN_WIN_FORMAT, score));
         } else if (winner.equals(COMPUTER_WIN)) {
             return new JLabel(String.format(COMPUTER_WIN_FORMAT, score));

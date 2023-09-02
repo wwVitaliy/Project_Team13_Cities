@@ -7,18 +7,19 @@ import java.util.*;
 //Клас CitiesDatabase він зберігає назви
 //міст має метод nextCity і декілька не обов'язкових методів
 public class CitiesDataBase {
+    private static final String CITIES_PATH = "./src/main/resources/UAcities.txt";
     private final Collection<String> cities;
-    private static final String path = "./src/main/resources/UAcities.txt";
 
 
     //В конструкторі CitiesDataBase з файла UAcities.txt
     //зчитуються всі міста України і додаються в колекцію унікальних елементів cities
     public CitiesDataBase() {
         cities = new ArrayList<>();
-        try (BufferedReader buffReader = new BufferedReader(new FileReader(path))) {
+
+        try (BufferedReader buffReader = new BufferedReader(new FileReader(CITIES_PATH))) {
             String city = buffReader.readLine();
             while (city != null) {
-                cities.add(city);
+                cities.add(city.toLowerCase());
                 city = buffReader.readLine();
             }
         } catch (Exception ex) {
@@ -46,12 +47,29 @@ public class CitiesDataBase {
         return answer.orElse(null);
     }
 
+    public Optional<String> getNextCity(char letter) {
+        return cities.stream()
+                .filter(city -> city.startsWith(String.valueOf(letter)))
+                .findAny();
+    }
+
+
     //maybe useful methods
     public void removeCity(String toRemove) {
-        cities.remove(toRemove);
+        try {
+            cities.remove(toRemove);
+        } catch (NullPointerException e) {
+            //NOP
+        }
+
     }
 
     public boolean containsCity(String str) {
         return cities.contains(str);
     }
+
+    public int getSize(){
+        return cities.size();
+    }
+
 }
