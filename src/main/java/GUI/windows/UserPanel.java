@@ -45,7 +45,9 @@ public class UserPanel extends JPanel {
 
             if (GameLogic.checkEntry(text)) {
                 GameLogic.playRound(text);
+                userInputField.setText("");
             }
+
 
             update();
             gameButton.setEnabled(true);
