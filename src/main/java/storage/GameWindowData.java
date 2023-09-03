@@ -6,7 +6,10 @@ import java.awt.*;
 public class GameWindowData {
     //constants
     public static final Dimension WINDOW_DIMENSION = new Dimension(400, 500);
-    public static final Dimension COMPONENTS_DIMENSION = new Dimension(300, 80);
+    public static final Dimension PANEL_DIMENSION = new Dimension(400, 80);
+    public static final Dimension COMPONENT_DIMENSION = new Dimension(120, 25);
+    public static final Dimension LABEL_DIMENSION = new Dimension(240,25);
+
     private static final String COMPUTER_RESPONSE_FORMAT = "Computer: %s";
     private static final String GAME_BUTTON_TEXT = "Play";
     private static final String DEFAULT_INPUT_LABEL = "Please write city name";

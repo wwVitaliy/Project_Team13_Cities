@@ -21,7 +21,8 @@ public class GameWindow extends JFrame {
     //В конструкторі ініціалізується всі поля і валідується і показується людині
     public GameWindow() {
         config();
-        addIcon();
+        addIconAndImage();
+
 
         userPanel = new UserPanel();
         add(userPanel);
@@ -32,7 +33,6 @@ public class GameWindow extends JFrame {
     }
 
     private void config() {
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -48,11 +48,15 @@ public class GameWindow extends JFrame {
         setBackground(Color.WHITE);
     }
 
-    private void addIcon() {
+    private void addIconAndImage() {
         try {
             File file = new File(GUI.CITY_ICON);
             Image cityIcon = ImageIO.read(file);
             setIconImage(cityIcon);
+            JLabel jLabel = new JLabel();
+            jLabel.setIcon(new ImageIcon(cityIcon));
+            jLabel.setBounds(4,90,380,380);
+            add(jLabel);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

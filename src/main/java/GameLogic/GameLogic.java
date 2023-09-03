@@ -96,7 +96,7 @@ public class GameLogic {
     public static boolean checkEntry(String entry) {
 
         if (entry.equals("")) {
-            gameWindowData.setUserLabel("You did not enter anything! Please write city name");
+            gameWindowData.setUserLabel("Enter something! Please write city name");
             return false;
         } else if (entry.equals("give up")) {
             finishGame(ScoreWindow.COMPUTER_WIN);
