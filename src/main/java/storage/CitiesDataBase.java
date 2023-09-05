@@ -27,25 +27,6 @@ public class CitiesDataBase {
         }
     }
 
-    //    Метод String nextCity(String toCompare) він приймає назву міста (не має бути null)
-//    з нього бере останню літеру  і з колекції бере якесь
-//    місто яке починається з останньої літери toCompare
-//    видаляє toCompare й answer з колекції
-//    може повернути answer або null якщо його немає
-    public String nextCity(String toCompare) {
-        if (toCompare == null) {
-            throw new NullPointerException("toCompare = null");
-        }
-        String lastLetter = String.valueOf(toCompare.charAt(toCompare.length() - 1));
-        Optional<String> answer = cities.stream()
-                .filter(city -> city.startsWith(lastLetter.toUpperCase()))
-                .findAny();
-
-        answer.ifPresent(cities::remove);
-        cities.remove(toCompare);
-
-        return answer.orElse(null);
-    }
 
     public Optional<String> getNextCity(char letter) {
         return cities.stream()
@@ -66,10 +47,6 @@ public class CitiesDataBase {
 
     public boolean containsCity(String str) {
         return cities.contains(str);
-    }
-
-    public int getSize(){
-        return cities.size();
     }
 
 }
